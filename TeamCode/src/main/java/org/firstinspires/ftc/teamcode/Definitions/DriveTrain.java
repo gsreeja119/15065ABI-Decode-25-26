@@ -3,18 +3,11 @@ package org.firstinspires.ftc.teamcode.Definitions;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @Disabled
 public class DriveTrain {
     private DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
-
-    private IMU imu;
-
-    public void initDrivetrain(HardwareMap hardwareMap) {
+    public void initDriveTrain(HardwareMap hardwareMap) {
         frontLeftMotor = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
         backLeftMotor = hardwareMap.get(DcMotor.class, "BackLeftMotor");
         frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
@@ -27,17 +20,8 @@ public class DriveTrain {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        imu = hardwareMap.get(IMU.class, "IMU");
-
-        RevHubOrientationOnRobot RevOrientation = new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD);
-
-        imu.initialize(new IMU.Parameters(RevOrientation));
     }
-
-    public void initDriveTrain(double forward, double strafe, double rotate) {
+    public void mecanumEquations(double forward, double strafe, double rotate) {
         double frontLeftPower = forward + strafe + rotate;
         double backLeftPower = forward - strafe + rotate;
         double frontRightPower = forward - strafe - rotate;
@@ -55,16 +39,5 @@ public class DriveTrain {
         backLeftMotor.setPower(maxSpeed * (backLeftPower / maxPower));
         frontRightMotor.setPower(maxSpeed * (frontRightPower / maxPower));
         backRightMotor.setPower(maxSpeed * (backRightPower / maxPower));
-    }
-    public void driveFieldRelative(double forward, double strafe, double rotate) {
-        double theta = Math.atan2(forward, strafe);
-        double r = Math.hypot(strafe, forward);
-
-        theta = AngleUnit.normalizeRadians(theta - imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
-
-        double newForward = r * Math.sin(theta);
-        double newStrafe = r * Math.cos(theta);
-
-        this.initDriveTrain(newForward, newStrafe, rotate);
     }
 }
