@@ -17,6 +17,10 @@ public class MainTeleOp extends LinearOpMode {
 
         double forward, strafe, rotate;
 
+        boolean wasRightBumperPressed = false;
+        boolean wasLeftBumperPressed = false;
+        boolean intakeMotorIsOn = false;
+
         telemetry.addData("Status", "Ready");
         telemetry.update();
 
@@ -33,8 +37,34 @@ public class MainTeleOp extends LinearOpMode {
 
             drive.mecanumEquations(forward,strafe,rotate);
 
-            if (gamepad2.right_bumper) {
+            if (gamepad2.right_bumper && !wasRightBumperPressed) {
+                intakeMotorIsOn = !intakeMotorIsOn;
+                wasRightBumperPressed = true;
+            }
+            else {
+                wasRightBumperPressed = false;
+            }
+            if (intakeMotorIsOn) {
                 intakeMotor.setPower(1);
+            }
+            else {
+                intakeMotor.setPower(0);
+            }
+
+
+            if (gamepad2.left_bumper && !wasLeftBumperPressed) {
+                intakeMotorIsOn = !intakeMotorIsOn;
+                wasLeftBumperPressed = true;
+            }
+            else {
+                wasLeftBumperPressed = false;
+            }
+
+            if (intakeMotorIsOn) {
+                intakeMotor.setPower(-1);
+            }
+            else {
+                intakeMotor.setPower(0);
             }
         }
     }
