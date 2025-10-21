@@ -25,8 +25,6 @@ public abstract class AutoApril extends LinearOpMode
 
     private static final long TIMEOUT_MS = 4000;
 
-
-
-
+ 
 
 }
