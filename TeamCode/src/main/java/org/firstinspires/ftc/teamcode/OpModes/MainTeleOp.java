@@ -26,6 +26,7 @@ public class MainTeleOp extends LinearOpMode {
         boolean intakeMotorIsOn = false;
         boolean outtakeMotorIsOn = false;
         boolean reverseIntakeMotor = false;
+        boolean reverseIntakeIsOn = false;
 
         telemetry.addData("Status", "Ready");
         telemetry.update();
@@ -65,7 +66,6 @@ public class MainTeleOp extends LinearOpMode {
             else {
                 wasLeftBumperPressed = false;
             }
-
             if (outtakeMotorIsOn) {
                 outtakeMotor.setPower(1);
             }
@@ -75,18 +75,18 @@ public class MainTeleOp extends LinearOpMode {
 
 
             if (gamepad2.b && !wasBPressed) {
-                outtakeMotorIsOn = !outtakeMotorIsOn;
-                wasLeftBumperPressed = true;
+                reverseIntakeMotor = !reverseIntakeIsOn;
+                wasBPressed = true;
             }
             else {
-                wasLeftBumperPressed = false;
+                wasBPressed = false;
             }
 
-            if (outtakeMotorIsOn) {
-                outtakeMotor.setPower(1);
+            if (reverseIntakeMotor) {
+                intakeMotor.setPower(-1);
             }
             else {
-                outtakeMotor.setPower(0);
+                intakeMotor.setPower(0);
             }
         }
     }
