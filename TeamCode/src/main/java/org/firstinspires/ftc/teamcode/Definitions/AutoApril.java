@@ -17,7 +17,6 @@ import java.util.List;
 
 
 @TeleOp(name = "Concept: AprilTag", group = "Concept")
-@Disabled
 public class AutoApril extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
@@ -41,6 +40,7 @@ public class AutoApril extends LinearOpMode {
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
+
         waitForStart();
 
         if (opModeIsActive()) {
@@ -52,9 +52,9 @@ public class AutoApril extends LinearOpMode {
                 telemetry.update();
 
                 // Save CPU resources; can resume streaming when needed.
-                if (gamepad1.dpad_down) {
+                if (gamepad1.y) {
                     visionPortal.stopStreaming();
-                } else if (gamepad1.dpad_up) {
+                } else if (gamepad1.x) {
                     visionPortal.resumeStreaming();
                 }
 
@@ -87,7 +87,7 @@ public class AutoApril extends LinearOpMode {
                 // == CAMERA CALIBRATION ==
                 // If you do not manually specify calibration parameters, the SDK will attempt
                 // to load a predefined calibration for your camera.
-                .setLensIntrinsics(1394.602, 1394.602, 995.588, 599.321)
+                //.setLensIntrinsics(1394.602, 1394.602, 995.588, 599.321)
                 // ... these parameters are fx, fy, cx, cy.
 
                 .build();
@@ -123,7 +123,7 @@ public class AutoApril extends LinearOpMode {
         // Choose whether or not LiveView stops if no processors are enabled.
         // If set "true", monitor shows solid orange screen if no processors enabled.
         // If set "false", monitor shows camera view without annotations.
-        //builder.setAutoStopLiveView(false);
+        builder.setAutoStopLiveView(true);
 
         // Set and enable the processor.
         builder.addProcessor(aprilTag);
