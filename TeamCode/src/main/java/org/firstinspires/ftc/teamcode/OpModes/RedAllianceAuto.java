@@ -3,14 +3,13 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-
 @Autonomous (name = "RedAllianceAuto")
 public class RedAllianceAuto extends LinearOpMode {
     public DcMotor frontLeftMotor;
     public DcMotor backLeftMotor;
     public DcMotor frontRightMotor;
     public DcMotor backRightMotor;
+
 
     public int backLeftPos;
     public int backRightPos;
@@ -19,12 +18,30 @@ public class RedAllianceAuto extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "BackLeftMotor");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
+        backRightMotor = hardwareMap.get(DcMotor.class, "BackRightMotor");
+
+
+        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         waitForStart();
 
         drive(537.7, 537.7, 537.7, 537.7, 1);
         drive(537.7, 537.7, 537.7, 537.7, 1);
-        drive(-67.2125, 67.2125, -67.2125, 67.2125, 1);
+        drive(67.2125, -67.2125, 67.2125, -67.2125, 1);
 
         if (isStopRequested()) {
             return;
@@ -48,26 +65,5 @@ public class RedAllianceAuto extends LinearOpMode {
         backLeftMotor.setPower(speed);
         frontRightMotor.setPower(speed);
         backRightMotor.setPower(speed);
-    }
-
-    public void initDrivetrain(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "BackLeftMotor");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
-        backRightMotor = hardwareMap.get(DcMotor.class, "BackRightMotor");
-
-
-        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-        backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-
-        frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        backLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        frontRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        backRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 }
