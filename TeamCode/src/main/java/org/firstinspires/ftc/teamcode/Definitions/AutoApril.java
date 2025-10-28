@@ -15,9 +15,8 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.List;
 
-
-@TeleOp(name = "Concept: AprilTag", group = "Concept")
 @Disabled
+@TeleOp(name = "Concept: AprilTag", group = "Concept")
 public class AutoApril extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
