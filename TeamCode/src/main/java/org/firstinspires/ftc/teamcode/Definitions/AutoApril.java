@@ -4,6 +4,9 @@ import android.util.Size;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -13,11 +16,27 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagGameDatabase;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
+
 import java.util.List;
+import java.lang.reflect.Method;
+
+
 
 @Disabled
-@TeleOp(name = "Concept: AprilTag", group = "Concept")
-public class AutoApril extends LinearOpMode {
+@Autonomous(name = "Concept: AprilTag", group = "Concept")
+public class AutoApril extends LinearOpMode
+{
+    private static final String WEBCAM_NAME = "Webcam 1";
+
+    private static final int ID_20 = 20; //blue
+    private static final int ID_24 = 24; //red
+    private static final int ID_21 = 21; //gpp
+    private static final int ID_22 = 22; //pgp
+    private static final int ID_23 = 23; //ppg
+
+    private static final double FWD = 1.0;
+
+    private static final long TIMEOUT_MS = 4000;
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
