@@ -4,6 +4,8 @@ import android.util.Size;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -17,7 +19,17 @@ import java.util.List;
 
 
 @TeleOp(name = "Concept: AprilTag", group = "Concept")
-public class AutoApril extends LinearOpMode {
+public class AutoApril extends LinearOpMode
+{
+    private static final int ID_20 = 20; //blue
+    private static final int ID_24 = 24; //red
+    private static final int ID_22 = 22; //pgp
+    private static final int ID_23 = 23; //ppg
+    private static final int ID_21 = 21; //gpp
+
+    private static final double FWD = 1.0;
+
+    private static final long TIMEOUT_MS = 4000;
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
@@ -31,20 +43,35 @@ public class AutoApril extends LinearOpMode {
      */
     private VisionPortal visionPortal;
 
+    private AprilTagDetection tagOfInterest = null;
+
+    private DcMotor backLeftMotor, backRightMotor, frontLeftMotor, frontRightMotor;
+
     @Override
     public void runOpMode() {
 
         initAprilTag();
 
+
+
         // Wait for the DS start button to be touched.
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
-
         waitForStart();
 
         if (opModeIsActive()) {
-            while (opModeIsActive()) {
+
+            while (opModeInInit())
+            {
+                if (tagOfInterest != null)
+                {
+                    telemetry.addData("TAG SEEN","ID=%d", tagOfInterest.id);
+                    addPoseIfAvailable(tagOfInterest);
+                }
+            }
+            while (opModeIsActive())
+            {
 
                 telemetryAprilTag();
 
@@ -52,14 +79,24 @@ public class AutoApril extends LinearOpMode {
                 telemetry.update();
 
                 // Save CPU resources; can resume streaming when needed.
-                if (gamepad1.y) {
+                if (gamepad1.dpad_down) {
                     visionPortal.stopStreaming();
-                } else if (gamepad1.x) {
+                } else if (gamepad1.dpad_up) {
                     visionPortal.resumeStreaming();
                 }
-
+                int chosen = (tagOfInterest != null) ? tagOfInterest.id : -1;
+                telemetry.update();
                 // Share the CPU.
                 sleep(20);
+
+
+                if (chosen == ID_20)
+                {
+                    telemetry.addLine("Branch: ID 20");
+                    telemetry.update();
+                }
+
+
             }
         }
 
@@ -67,6 +104,9 @@ public class AutoApril extends LinearOpMode {
         visionPortal.close();
 
     }   // end method runOpMode()
+
+    private void addPoseIfAvailable(AprilTagDetection tagOfInterest) {
+    }
 
     /**
      * Initialize the AprilTag processor.
@@ -124,7 +164,7 @@ public class AutoApril extends LinearOpMode {
         // Choose whether or not LiveView stops if no processors are enabled.
         // If set "true", monitor shows solid orange screen if no processors enabled.
         // If set "false", monitor shows camera view without annotations.
-        builder.setAutoStopLiveView(true);
+        //builder.setAutoStopLiveView(false);
 
         // Set and enable the processor.
         builder.addProcessor(aprilTag);
