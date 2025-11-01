@@ -22,7 +22,6 @@ import java.lang.reflect.Method;
 
 
 
-@Disabled
 @Autonomous(name = "Concept: AprilTag", group = "Concept")
 public class AutoApril extends LinearOpMode
 {
@@ -50,8 +49,11 @@ public class AutoApril extends LinearOpMode
      */
     private VisionPortal visionPortal;
 
+    private AprilTagDetection tagOfInterest = null;
+
     @Override
-    public void runOpMode() {
+    public void runOpMode()
+    {
 
         initAprilTag();
 
@@ -83,6 +85,14 @@ public class AutoApril extends LinearOpMode
 
         // Save more CPU resources when camera is no longer needed.
         visionPortal.close();
+
+        int chosen = (tagOfInterest != null) ? tagOfInterest.id : -1;
+
+        if (chosen == ID_24)
+        {
+            telemetry.addLine("Branch: ID 20");
+            telemetry.update();
+        }
 
     }   // end method runOpMode()
 
