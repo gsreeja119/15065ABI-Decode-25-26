@@ -68,14 +68,6 @@ public class MainTeleOp extends LinearOpMode {
             }
             if (outtakeMotorIsOn) {
                 outtakeMotor.setPower(1);
-            }
-            else {
-                outtakeMotor.setPower(0);
-            }
-
-
-            if (gamepad2.b && !wasBPressed) {
-                reverseIntakeMotor = !reverseIntakeIsOn;
                 wasBPressed = true;
             }
             else {

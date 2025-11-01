@@ -39,10 +39,6 @@ public class RedAllianceAuto extends LinearOpMode {
 
         waitForStart();
 
-        drive(537.7, 537.7, 537.7, 537.7, 1);
-        drive(537.7, 537.7, 537.7, 537.7, 1);
-        drive(67.2125, -67.2125, 67.2125, -67.2125, 1);
-
         if (isStopRequested()) {
             return;
         }

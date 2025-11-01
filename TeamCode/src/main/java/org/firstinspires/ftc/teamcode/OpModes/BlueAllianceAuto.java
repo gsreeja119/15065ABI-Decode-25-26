@@ -38,10 +38,9 @@ public class BlueAllianceAuto extends LinearOpMode {
         backRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         waitForStart();
-
-        drive(537.7, 537.7, 537.7, 537.7, 1);
-        drive(537.7, 537.7, 537.7, 537.7, 1);
-        drive(67.2125, -67.2125, 67.2125, -67.2125, 1);
+        for (int i = 0; i < 100; i++) {
+            drive(537.7, 537.7, 537.7, 537.7, 1);
+        }
 
         if (isStopRequested()) {
             return;

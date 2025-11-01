@@ -9,5 +9,7 @@ public class Outtake {
 
     public void initOuttake(HardwareMap outtake) {
         outtakeMotor = outtake.get(DcMotor.class, "OuttakeMotor");
+        outtakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        outtakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 }

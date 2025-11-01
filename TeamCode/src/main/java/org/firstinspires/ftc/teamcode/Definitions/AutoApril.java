@@ -87,10 +87,11 @@ public class AutoApril extends LinearOpMode {
                 // == CAMERA CALIBRATION ==
                 // If you do not manually specify calibration parameters, the SDK will attempt
                 // to load a predefined calibration for your camera.
-                //.setLensIntrinsics(1394.602, 1394.602, 995.588, 599.321)
+                .setLensIntrinsics(1394.602, 1394.602, 995.588, 599.321)
                 // ... these parameters are fx, fy, cx, cy.
 
                 .build();
+
 
         // Adjust Image Decimation to trade-off detection-range for detection-rate.
         // eg: Some typical detection data using a Logitech C920 WebCam
