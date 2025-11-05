@@ -38,15 +38,12 @@ public static MecanumConstants driveConstants = new MecanumConstants()
         .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
 
 public static ThreeWheelIMUConstants localizerConstants = new ThreeWheelIMUConstants()
-        .leftPodY(1) //add the proper value later
-        .rightPodY(2) //add the proper value later
-        .strafePodX(3) //add the proper value later
         .forwardTicksToInches(.001989436789)
         .strafeTicksToInches(.001989436789)
         .turnTicksToInches(.001989436789)
-        .leftPodY(1)
-        .rightPodY(-1)
-        .strafePodX(-2.5)
+        .leftPodY(1) //add proper value later
+        .rightPodY(-1) //add proper value later
+        .strafePodX(-2.5) //add proper value later
         .leftEncoder_HardwareMapName("FrontLeftMotor")
         .rightEncoder_HardwareMapName("BackLeftMotor")
         .strafeEncoder_HardwareMapName("FrontRightMotor")
