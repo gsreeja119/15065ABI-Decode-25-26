@@ -10,7 +10,7 @@ public class DriveTrain {
 
     private HardwareMap hardwareMap;
 
-    private DcMotor encoderLeft, encoderRight, encoderMiddle;
+    private DcMotor leftEncoder, rightEncoder, strafeEncoder;
     public void initDriveTrain(HardwareMap hardwareMap) {
         frontLeftMotor = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
         backLeftMotor = hardwareMap.get(DcMotor.class, "BackLeftMotor");
@@ -30,19 +30,19 @@ public class DriveTrain {
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        encoderRight = backLeftMotor;
-        encoderLeft = frontLeftMotor;
-        encoderMiddle = frontRightMotor;
+        rightEncoder = backLeftMotor;
+        leftEncoder = frontLeftMotor;
+        strafeEncoder = frontRightMotor;
 
-        encoderRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        encoderLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        encoderMiddle.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-    final static double L = //distance between encoder 1 and enocder 2 in cm
-    final static double B = //distance between midpoint of encoder 1 and 2 and encoder 3
-    final static double R = // wheel diameter in cm
-    final static double N = // encoder ticks per revolution, REV encoder
+    final static double L = 8; //distance between encoder 1 and encoder 2 in cm. Add proper value.
+    final static double B = 8; //distance between midpoint encoder 1 and 2 and encoder 3. Add proper value.
+    final static double R = 4.8;
+    final static double N = 2150.8;
 
     private int oldRightPosition = 0;
     private int oldLeftPosition = 0;
