@@ -17,9 +17,6 @@ public class DriveTrain {
         frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
         backRightMotor = hardwareMap.get(DcMotor.class, "BackRightMotor");
 
-        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotor.Direction.REVERSE);
-
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -30,19 +27,21 @@ public class DriveTrain {
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        rightEncoder = backLeftMotor;
-        leftEncoder = frontLeftMotor;
-        strafeEncoder = frontRightMotor;
+        //rightEncoder = backLeftMotor;
+        //leftEncoder = frontLeftMotor;
+        //strafeEncoder = frontRightMotor;
 
-        rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     final static double L = 8; //distance between encoder 1 and encoder 2 in cm. Add proper value.
     final static double B = 8; //distance between midpoint encoder 1 and 2 and encoder 3. Add proper value.
     final static double R = 4.8;
     final static double N = 2150.8;
+
+    final static double cmPerTick = 2.0 * Math.PI * R / N;
 
     private int oldRightPosition = 0;
     private int oldLeftPosition = 0;

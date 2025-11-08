@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Definitions;
+/* package org.firstinspires.ftc.teamcode.Definitions;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -11,4 +11,4 @@ public class Intake {
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
-}
+} */

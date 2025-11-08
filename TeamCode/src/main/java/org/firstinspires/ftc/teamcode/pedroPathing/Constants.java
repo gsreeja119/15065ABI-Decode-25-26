@@ -1,4 +1,4 @@
-import com.pedropathing.follower.Follower;
+/* import com.pedropathing.follower.Follower;
 import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
 import com.pedropathing.ftc.drivetrains.MecanumConstants;
@@ -44,6 +44,12 @@ public static ThreeWheelIMUConstants localizerConstants = new ThreeWheelIMUConst
         .leftPodY(1) //add proper value later
         .rightPodY(-1) //add proper value later
         .strafePodX(-2.5) //add proper value later
+        .leftEncoderDirection(Encoder.REVERSE) // To be decided
+        .rightEncoderDirection(Encoder.FORWARD) // To be decided
+        .strafeEncoderDirection(Encoder.REVERSE) // To be decided
+        .forwardTicksToInches(3) // To be decided
+        .strafeTicksToInches(3) // To be decided
+        .turnTicksToInches(3) // To be decided
         .leftEncoder_HardwareMapName("FrontLeftMotor")
         .rightEncoder_HardwareMapName("BackLeftMotor")
         .strafeEncoder_HardwareMapName("FrontRightMotor")
@@ -55,4 +61,4 @@ public static ThreeWheelIMUConstants localizerConstants = new ThreeWheelIMUConst
                 RevHubOrientationOnRobot.UsbFacingDirection.DOWN));
 
 void main() {
-}
+} */
