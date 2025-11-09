@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode.Definitions;
+package org.firstinspires.ftc.teamcode.Definitions;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -12,4 +12,8 @@ public class Outtake {
         outtakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         outtakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
-} */
+
+    public void power(double power){
+        outtakeMotor.setPower(power);
+    }
+}
