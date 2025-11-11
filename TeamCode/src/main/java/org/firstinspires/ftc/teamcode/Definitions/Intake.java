@@ -15,4 +15,4 @@ public class Intake {
     public void power(double power){
         intakeMotor.setPower(power);
     }
-}
+} //asdkl

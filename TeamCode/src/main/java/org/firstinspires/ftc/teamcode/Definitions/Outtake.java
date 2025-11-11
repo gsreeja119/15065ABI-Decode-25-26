@@ -16,4 +16,4 @@ public class Outtake {
     public void power(double power){
         outtakeMotor.setPower(power);
     }
-}
+} //a;dslfkj
