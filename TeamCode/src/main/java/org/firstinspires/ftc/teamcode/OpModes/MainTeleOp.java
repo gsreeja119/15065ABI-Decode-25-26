@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
-import org.firstinspires.ftc.teamcode.Definitions.Intake;
-import org.firstinspires.ftc.teamcode.Definitions.Outtake;
+//import org.firstinspires.ftc.teamcode.Definitions.Intake;
+//import org.firstinspires.ftc.teamcode.Definitions.Outtake;
 
 @TeleOp(name = "MainTeleOp")
 public class MainTeleOp extends LinearOpMode {
@@ -13,10 +13,10 @@ public class MainTeleOp extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         DriveTrain drive = new DriveTrain();
         drive.initDriveTrain(hardwareMap);
-        Intake intake = new Intake();
-        intake.initIntake(hardwareMap);
-        Outtake outtake = new Outtake();
-        outtake.initOuttake(hardwareMap);
+        //Intake intake = new Intake();
+        //intake.initIntake(hardwareMap);
+        //Outtake outtake = new Outtake();
+        //outtake.initOuttake(hardwareMap);
 
         double forward, strafe, rotate;
 
@@ -44,7 +44,7 @@ public class MainTeleOp extends LinearOpMode {
 
             drive.mecanumEquations(forward,strafe,rotate);
 
-            if (gamepad2.right_bumper && !wasRightBumperPressed) {
+            /* if (gamepad2.right_bumper && !wasRightBumperPressed) {
                 intakeMotorIsOn = !intakeMotorIsOn;
                 wasRightBumperPressed = true;
             }
@@ -59,13 +59,31 @@ public class MainTeleOp extends LinearOpMode {
             }
 
 
-            if (gamepad2.left_bumper && wasLeftBumperPressed) {
+            if (gamepad2.left_bumper && !wasLeftBumperPressed) {
                 outtakeMotorIsOn = !outtakeMotorIsOn;
                 wasLeftBumperPressed = true;
             }
+            else {
+                wasLeftBumperPressed = false;
+            }
+            if (outtakeMotorIsOn) {
+                outtakeMotor.setPower(1);
+                wasBPressed = true;
+            }
+            else {
+                wasBPressed = false;
+            }
+
+            if (reverseIntakeMotor) {
+                intakeMotor.setPower(-1);
+            }
+            else {
+                intakeMotor.setPower(0);
+            }
         }
     }
-    private DcMotor outtakeMotor;
     private DcMotor intakeMotor;
-}
+    private DcMotor outtakeMotor;
+    */
+}}}
 

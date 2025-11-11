@@ -17,7 +17,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.List;
 
-
+@Disabled
 @TeleOp(name = "Concept: AprilTag", group = "Concept")
 public class AutoApril extends LinearOpMode
 {
