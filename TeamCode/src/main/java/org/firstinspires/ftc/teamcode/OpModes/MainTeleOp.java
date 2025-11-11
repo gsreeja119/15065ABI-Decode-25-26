@@ -15,7 +15,7 @@ public class MainTeleOp extends LinearOpMode {
         drive.initDriveTrain(hardwareMap);
         //Intake intake = new Intake();
         //intake.initIntake(hardwareMap);
-        //Outtake outtake = new Outtake();
+        //Outtake outtake =  new Outtake();
         //outtake.initOuttake(hardwareMap);
 
         double forward, strafe, rotate;
