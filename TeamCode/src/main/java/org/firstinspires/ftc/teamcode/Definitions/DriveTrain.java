@@ -16,7 +16,6 @@ public class DriveTrain {
         backLeftMotor = hardwareMap.get(DcMotor.class, "BackLeftMotor");
         frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
         backRightMotor = hardwareMap.get(DcMotor.class, "BackRightMotor");
-
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
