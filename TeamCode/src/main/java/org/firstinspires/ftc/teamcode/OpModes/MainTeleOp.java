@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
@@ -9,8 +10,22 @@ import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
 
 @TeleOp(name = "MainTeleOp")
 public class MainTeleOp extends LinearOpMode {
+
+    public CRServo servo;
     @Override
     public void runOpMode() throws InterruptedException {
+
+        while (gamepad1.y)
+        {
+            servo.setPower(1);
+        }
+        while (gamepad1.a)
+        {
+            servo.setPower(-1);
+        }
+        {
+
+        }
         DriveTrain drive = new DriveTrain();
         drive.initDriveTrain(hardwareMap);
         //Intake intake = new Intake();

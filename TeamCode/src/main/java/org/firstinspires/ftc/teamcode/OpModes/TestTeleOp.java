@@ -1,9 +1,12 @@
-package org.firstinspires.ftc.teamcode.Definitions;
+package org.firstinspires.ftc.teamcode.OpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Intake {
+@TeleOp
+public class TestTeleOp extends LinearOpMode {
     private DcMotor intakeMotor;
 
     public void initIntake(HardwareMap intake) {
@@ -12,7 +15,12 @@ public class Intake {
         intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
-    public void power(double power){
-        intakeMotor.setPower(power);
+    public void runOpMode() {
+        if (gamepad1.a) {
+            intakeMotor.setPower(1);
+        }
+        else{
+            intakeMotor.setPower(0);
+        }
     }
 }
