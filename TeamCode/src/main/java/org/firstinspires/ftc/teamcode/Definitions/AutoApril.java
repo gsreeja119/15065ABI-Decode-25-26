@@ -205,5 +205,4 @@ public class AutoApril extends LinearOpMode
         telemetry.addLine("RBE = Range, Bearing & Elevation");
 
     }   // end method telemetryAprilTag()
-
-}   // end class
+}
