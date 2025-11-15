@@ -1,17 +1,21 @@
-package org.firstinspires.ftc.teamcode.Definitions;
+/* package org.firstinspires.ftc.teamcode.Definitions;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
-@Disabled
 public class AutoDriveTrain {
     public DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
-    public DcMotor strafeEncoder, rightEncoder;
+    public DcMotor strafeEncoder, forwardEncoder;
     private IMU IMU;
-    private HardwareMap hardwareMap;
+    final static double wheelRadius = 2.4;
+    final static double ticksPerRevolution = 8000;
+    final static double cmPerTick = 2.0 * Math.PI * wheelRadius / ticksPerRevolution;
+    private int oldRightPosition = 0;
+    private int oldStrafePosition = 0;
+    private double x = 0, y = 0, theta = 0;
+    private double lastF = 0, lastS = 0;
 
     public void initAutoDriveTrain(HardwareMap hardwareMap) {
         frontLeftMotor = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
@@ -19,7 +23,7 @@ public class AutoDriveTrain {
         frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
         backRightMotor = hardwareMap.get(DcMotor.class, "BackRightMotor");
 
-        rightEncoder = hardwareMap.get(DcMotor.class, "RightEncoder");
+        forwardEncoder = hardwareMap.get(DcMotor.class, "RightEncoder");
         strafeEncoder = hardwareMap.get(DcMotor.class, "StrafeEncoder");
         IMU = hardwareMap.get(IMU.getClass(), "IMU");
 
@@ -28,7 +32,7 @@ public class AutoDriveTrain {
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        frontRightMotor = rightEncoder;
+        frontRightMotor = forwardEncoder;
         backLeftMotor = strafeEncoder;
 
         frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -61,28 +65,9 @@ public class AutoDriveTrain {
                         RevHubOrientationOnRobot.UsbFacingDirection.LEFT)); //adjust later
         IMU.initialize(params);
     }
-    public int currentRightPosition = 0;
-    public int currentStrafePosition = 0;
-    private int oldRightPosition = 0;
-    private int oldStrafePosition = 0;
 
-    public void mecanumEquations(double forward, double strafe, double rotate) {
-        double frontLeftPower = forward + strafe + rotate;
-        double backLeftPower = forward - strafe + rotate;
-        double frontRightPower = forward - strafe - rotate;
-        double backRightPower = forward + strafe - rotate;
-
-        double maxPower = 1;
-        double maxSpeed = 1;
-
-        maxPower = Math.max(maxPower, Math.abs(frontLeftPower));
-        maxPower = Math.max(maxPower, Math.abs(backLeftPower));
-        maxPower = Math.max(maxPower, Math.abs(frontRightPower));
-        maxPower = Math.max(maxPower, Math.abs(backRightPower));
-
-        frontLeftMotor.setPower(maxSpeed * (frontLeftPower / maxPower));
-        backLeftMotor.setPower(maxSpeed * (backLeftPower / maxPower));
-        frontRightMotor.setPower(maxSpeed * (frontRightPower / maxPower));
-        backRightMotor.setPower(maxSpeed * (backRightPower / maxPower));
+    private void updateOdometry() {
+        double currentForwardPosition = forwardEncoder.getCurrentPosition();
+        double currentStrafePosition = strafeEncoder.getCurrentPosition();
     }
-}
+} */

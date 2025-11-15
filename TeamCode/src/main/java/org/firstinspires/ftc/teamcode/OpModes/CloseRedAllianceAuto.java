@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @Autonomous (name = "BlueAllianceAuto")
-public class BlueAllianceAuto extends LinearOpMode {
+public class CloseRedAllianceAuto extends LinearOpMode {
     private DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
 
     public void runOpMode() {
@@ -41,20 +41,9 @@ public class BlueAllianceAuto extends LinearOpMode {
         frontRightMotor.setPower(0);
         sleep(2000);
 
-        backRightMotor.setPower(-1);
-        backLeftMotor.setPower(1);
-        frontLeftMotor.setPower(1);
-        frontRightMotor.setPower(-1);
-        sleep(2000);
-
-        backRightMotor.setPower(0);
-        backLeftMotor.setPower(0);
-        frontLeftMotor.setPower(0);
-        frontRightMotor.setPower(0);
-        sleep(2000);
-
         if (isStopRequested()) {
             return;
         }
     }
 }
+
