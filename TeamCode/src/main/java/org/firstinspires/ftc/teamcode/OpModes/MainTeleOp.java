@@ -38,6 +38,10 @@ public class MainTeleOp extends LinearOpMode {
             drive.mecanumEquations(forward, strafe, rotate);
 
             if (gamepad1.right_bumper) {
+                intake.power(-1);
+            }
+
+            if (gamepad1.y) {
                 intake.power(1);
             }
 
@@ -53,16 +57,20 @@ public class MainTeleOp extends LinearOpMode {
                 outtake.power(0);
             }
 
+            if (gamepad2.y) {
+                outtake.power(1);
+            }
+
             if (gamepad2.x) {
                 transfer.power(1);
             }
 
-            if (gamepad2.a) {
-                transfer.power(0);
+            if (gamepad2.b) {
+                transfer.power(-1);
             }
 
-            if (gamepad2.dpad_right) {
-                outtake.power(-0.1);
+            if (gamepad2.a) {
+                transfer.power(0);
             }
         }
     }
