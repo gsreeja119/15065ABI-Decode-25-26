@@ -7,9 +7,11 @@ import org.firstinspires.ftc.teamcode.Definitions.Outtake;
 import org.firstinspires.ftc.teamcode.Definitions.Transfer;
 
 @TeleOp(name = "MainTeleOp")
-public class MainTeleOp extends LinearOpMode {
+public class MainTeleOp extends LinearOpMode
+{
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() throws InterruptedException
+    {
         DriveTrain drive = new DriveTrain();
         drive.initDriveTrain(hardwareMap);
         Intake intake = new Intake();
@@ -26,50 +28,61 @@ public class MainTeleOp extends LinearOpMode {
 
         waitForStart();
 
-        if (isStopRequested()) {
+        if (isStopRequested())
+        {
             return;
         }
 
-        while (opModeIsActive()) {
+        while (opModeIsActive())
+        {
             forward = gamepad1.right_stick_y;
             strafe = -gamepad1.left_stick_x;
             rotate = gamepad1.right_stick_x;
 
             drive.mecanumEquations(forward, strafe, rotate);
 
-            if (gamepad1.right_bumper) {
+            if (gamepad1.right_bumper)
+            {
                 intake.power(-1);
             }
 
-            if (gamepad1.y) {
+            if (gamepad1.y)
+            {
                 intake.power(1);
             }
 
-            if (gamepad1.left_bumper) {
+            if (gamepad1.left_bumper)
+            {
                 intake.power(0);
             }
 
-            if (gamepad2.right_bumper) {
+            if (gamepad2.right_bumper)
+            {
                 outtake.power(-1);
             }
 
-            if (gamepad2.left_bumper) {
+            if (gamepad2.left_bumper)
+            {
                 outtake.power(0);
             }
 
-            if (gamepad2.y) {
+            if (gamepad2.y)
+            {
                 outtake.power(1);
             }
 
-            if (gamepad2.x) {
+            if (gamepad2.x)
+            {
                 transfer.power(1);
             }
 
-            if (gamepad2.b) {
+            if (gamepad2.b)
+            {
                 transfer.power(-1);
             }
 
-            if (gamepad2.a) {
+            if (gamepad2.a)
+            {
                 transfer.power(0);
             }
         }
