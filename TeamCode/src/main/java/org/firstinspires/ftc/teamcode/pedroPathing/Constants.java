@@ -38,13 +38,11 @@ public class Constants {
             .turnTicksToInches(.001989436789) //fix later
             .leftPodY(1) //fix later
             .rightPodY(-1) //fix later
-            .strafePodX(-2.5) //fix later
+            .strafePodX(-2.5)//fix later
             .leftEncoder_HardwareMapName("FrontLeftMotor") //fix later
             .rightEncoder_HardwareMapName("BackRightMotor") //fix later
             .strafeEncoder_HardwareMapName("FrontRightMotor") //fix later
             .leftEncoderDirection(Encoder.FORWARD) //fix later
-            .rightEncoderDirection(Encoder.FORWARD) //fix later
-            .strafeEncoderDirection(Encoder.FORWARD) //fix later
             .rightEncoderDirection(Encoder.FORWARD) //fix later
             .strafeEncoderDirection(Encoder.REVERSE) //fix later
             .forwardTicksToInches(2) //fix later
