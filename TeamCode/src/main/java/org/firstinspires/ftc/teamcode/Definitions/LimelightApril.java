@@ -12,7 +12,6 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
-@Disabled
 @TeleOp
 public class LimelightApril extends LinearOpMode
 {
@@ -21,36 +20,41 @@ public class LimelightApril extends LinearOpMode
 
     private IMU imu;
 
-    public void runOpMode()
+    public void runOpMode() throws InterruptedException
     {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
         limelight.pipelineSwitch(8);
-        imu = hardwareMap.get(IMU.class,"imu");
+        imu = hardwareMap.get(IMU.class, "imu");
         RevHubOrientationOnRobot revHubOrientationOnRobot = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP,
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD);
         imu.initialize(new IMU.Parameters(revHubOrientationOnRobot));
-    }
 
-    public void waitForStart()
-    {
-        limelight.start();
+        waitForStart();
 
-
-        while (opModeIsActive())
+        if (isStopRequested())
         {
-            YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
-            limelight.updateRobotOrientation(orientation.getYaw());
-            LLResult llResult = limelight.getLatestResult();
-            if (llResult != null && llResult.isValid())
-            {
-                Pose3D botPose = llResult.getBotpose();
-                telemetry.addData("Tx", llResult.getTx());
-                telemetry.addData("Ty", llResult.getTy());
-                telemetry.addData("Ta", llResult.getTa());
-
-            }
+            return;
         }
+        {
+            limelight.start();
 
+
+            while (opModeIsActive())
+            {
+                YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
+                limelight.updateRobotOrientation(orientation.getYaw());
+                LLResult llResult = limelight.getLatestResult();
+                if (llResult != null && llResult.isValid())
+                {
+                    Pose3D botPose = llResult.getBotpose();
+                    telemetry.addData("Tx", llResult.getTx());
+                    telemetry.addData("Ty", llResult.getTy());
+                    telemetry.addData("Ta", llResult.getTa());
+
+                }
+            }
+
+        }
     }
 }
 

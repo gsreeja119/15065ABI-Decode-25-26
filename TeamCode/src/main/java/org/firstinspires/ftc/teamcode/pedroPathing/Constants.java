@@ -14,7 +14,10 @@ public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
             .mass(5)
             .forwardZeroPowerAcceleration(2) //fix later
-            .lateralZeroPowerAcceleration(2); //fix later
+            .lateralZeroPowerAcceleration(2) //fix later\
+            .useSecondaryTranslationalPIDF(true)
+            .useSecondaryHeadingPIDF(true)
+            .useSecondaryDrivePIDF(true);
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100,
             1, 1);
@@ -29,27 +32,27 @@ public class Constants {
             .leftRearMotorDirection(DcMotor.Direction.FORWARD)
             .rightFrontMotorDirection(DcMotor.Direction.FORWARD)
             .rightRearMotorDirection(DcMotor.Direction.REVERSE)
-            .xVelocity(2) //fix later
-            .yVelocity(2); //fix later
+            .xVelocity(2) //fix later(Automatic Tuners)
+            .yVelocity(2); //fix later(Automatic Tuners)
 
     public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
-            .forwardTicksToInches(.001989436789) //fix later
-            .strafeTicksToInches(.001989436789) //fix later
-            .turnTicksToInches(.001989436789) //fix later
-            .leftPodY(1) //fix later
-            .rightPodY(-1) //fix later
-            .strafePodX(-2.5) //fix later
-            .leftEncoder_HardwareMapName("FrontLeftMotor") //fix later
-            .rightEncoder_HardwareMapName("BackRightMotor") //fix later
-            .strafeEncoder_HardwareMapName("FrontRightMotor") //fix later
-            .leftEncoderDirection(Encoder.FORWARD) //fix later
-            .rightEncoderDirection(Encoder.FORWARD) //fix later
-            .strafeEncoderDirection(Encoder.FORWARD) //fix later
-            .rightEncoderDirection(Encoder.FORWARD) //fix later
-            .strafeEncoderDirection(Encoder.REVERSE) //fix later
-            .forwardTicksToInches(2) //fix later
-            .strafeTicksToInches(2) //fix later
-            .turnTicksToInches(2); //fix later
+            .forwardTicksToInches(.001989436789) //fix later(Three Wheel)
+            .strafeTicksToInches(.001989436789) //fix later(Three Wheel)
+            .turnTicksToInches(.001989436789) //fix later(Three Wheel)
+            .leftPodY(1) //fix later(Three Wheel)
+            .rightPodY(-1) //fix later(Three Wheel)
+            .strafePodX(-2.5) //fix later(Three Wheel)
+            .leftEncoder_HardwareMapName("FrontLeftMotor") //fix later(Three Wheel)
+            .rightEncoder_HardwareMapName("BackRightMotor") //fix later(Three Wheel)
+            .strafeEncoder_HardwareMapName("FrontRightMotor") //fix later(Three Wheel)
+            .leftEncoderDirection(Encoder.FORWARD) //fix later(Three Wheel)
+            .rightEncoderDirection(Encoder.FORWARD) //fix later(Three Wheel)
+            .strafeEncoderDirection(Encoder.FORWARD) //fix later(Three Wheel)
+            .rightEncoderDirection(Encoder.FORWARD) //fix later(Three Wheel)
+            .strafeEncoderDirection(Encoder.REVERSE) //fix later(Three Wheel)
+            .forwardTicksToInches(2) //fix later(Three Wheel)
+            .strafeTicksToInches(2) //fix later(Three Wheel)
+            .turnTicksToInches(2); //fix later(Three Wheel)
 
 
     public static Follower createFollower(HardwareMap hardwareMap) {
