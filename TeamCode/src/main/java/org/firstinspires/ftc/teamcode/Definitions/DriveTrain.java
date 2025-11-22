@@ -47,4 +47,12 @@ public class DriveTrain
         frontRightMotor.setPower(maxSpeed * (frontRightPower / maxPower));
         backRightMotor.setPower(maxSpeed * (backRightPower / maxPower));
     }
+
+    public void power(double output)
+    {
+        frontLeftMotor.setPower(-output);
+        backLeftMotor.setPower(output);
+        frontRightMotor.setPower(output);
+        backRightMotor.setPower(-output);
+    }
 }
