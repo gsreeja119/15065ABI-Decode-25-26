@@ -10,11 +10,12 @@ import com.pedropathing.paths.PathConstraints;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Constants {
+public class Constants
+{
     public static FollowerConstants followerConstants = new FollowerConstants()
             .mass(5)
             .forwardZeroPowerAcceleration(2) //fix later
-            .lateralZeroPowerAcceleration(2) //fix later\
+            .lateralZeroPowerAcceleration(2) //fix later
             .useSecondaryTranslationalPIDF(true)
             .useSecondaryHeadingPIDF(true)
             .useSecondaryDrivePIDF(true);
@@ -55,7 +56,8 @@ public class Constants {
             .turnTicksToInches(2); //fix later(Three Wheel)
 
 
-    public static Follower createFollower(HardwareMap hardwareMap) {
+    public static Follower createFollower(HardwareMap hardwareMap)
+    {
         return new FollowerBuilder(followerConstants, hardwareMap)
                 .pathConstraints(pathConstraints)
                 .mecanumDrivetrain(driveConstants)
