@@ -44,16 +44,19 @@ public class MainTeleOp extends LinearOpMode
             if (gamepad1.right_bumper)
             {
                 intake.power(-1);
+                intake2.power(-1);
             }
 
             if (gamepad1.y)
             {
                 intake.power(1);
+                intake2.power(1);
             }
 
             if (gamepad1.left_bumper)
             {
                 intake.power(0);
+                intake2.power(0);
             }
 
             if (gamepad2.right_bumper)
@@ -71,6 +74,7 @@ public class MainTeleOp extends LinearOpMode
                 outtake.power(1);
             }
 
+            /*
             if (gamepad2.x)
             {
                 transfer.power(1);
@@ -85,6 +89,7 @@ public class MainTeleOp extends LinearOpMode
             {
                 transfer.power(0);
             }
+             */
         }
     }
 }
