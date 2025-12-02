@@ -3,6 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
 import org.firstinspires.ftc.teamcode.Definitions.Intake;
+import org.firstinspires.ftc.teamcode.Definitions.Intake2;
 import org.firstinspires.ftc.teamcode.Definitions.Outtake;
 import org.firstinspires.ftc.teamcode.Definitions.Transfer;
 
@@ -16,6 +17,8 @@ public class MainTeleOp extends LinearOpMode
         drive.initDriveTrain(hardwareMap);
         Intake intake = new Intake();
         intake.initIntake(hardwareMap);
+        Intake2 intake2 = new Intake2();
+        intake2.initIntake2(hardwareMap);
         Outtake outtake = new Outtake();
         outtake.initOuttake(hardwareMap);
         Transfer transfer = new Transfer();
@@ -44,13 +47,13 @@ public class MainTeleOp extends LinearOpMode
             if (gamepad1.right_bumper)
             {
                 intake.power(-1);
-                intake2.power(-1);
+                intake2.power(1);
             }
 
             if (gamepad1.y)
             {
                 intake.power(1);
-                intake2.power(1);
+                intake2.power(-1);
             }
 
             if (gamepad1.left_bumper)
