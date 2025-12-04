@@ -48,57 +48,44 @@ public class MainTeleOp extends LinearOpMode
 
             drive.mecanumEquations(forward, strafe, rotate);
 
-            if (gamepad1.right_bumper)
-            {
+            if (gamepad1.right_bumper) {
                 intake.power(-1);
                 intake2.power(1);
             }
 
-            if (gamepad1.y)
-            {
+            if (gamepad1.y) {
                 intake.power(1);
                 intake2.power(-1);
             }
 
-            if (gamepad1.left_bumper)
-            {
+            if (gamepad1.left_bumper) {
                 intake.power(0);
                 intake2.power(0);
             }
 
-            if (gamepad2.right_bumper)
-            {
+            if (gamepad2.right_bumper) {
                 outtake.power(-1);
             }
 
-            if (gamepad2.left_bumper)
-            {
+            if (gamepad2.left_bumper) {
                 outtake.power(0);
             }
 
-            if (gamepad2.y)
-            {
+            if (gamepad2.y) {
                 outtake.power(1);
             }
 
             if (gamepad2.a)
             {
-                servo1.setServoPos(-1.0); // servo angle
+                servo1.setServoPos(-0.4); // servo angle
+                servo1.setServoRot(1.0); // servo power
             }
 
-            else
+            if (gamepad2.b)
             {
-                servo1.setServoPos(1.0); // servo angle
+                servo1.setServoPos(0.4); // servo power
+                servo1.setServoRot(-1); // servo power
             }
-             if (gamepad2.b)
-             {
-                 servo1.setServoRot(1.0); // servo power
-             }
-             else
-             {
-                 servo1.setServoRot(0); // servo power
-             }
-
         }
     }
 }
