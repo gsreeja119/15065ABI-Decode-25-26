@@ -5,14 +5,18 @@ import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
 import org.firstinspires.ftc.teamcode.Definitions.Intake;
 import org.firstinspires.ftc.teamcode.Definitions.Intake2;
 import org.firstinspires.ftc.teamcode.Definitions.Outtake;
+import org.firstinspires.ftc.teamcode.Definitions.Servo;
 import org.firstinspires.ftc.teamcode.Definitions.Transfer;
 
 @TeleOp(name = "MainTeleOp")
 public class MainTeleOp extends LinearOpMode
 {
+
     @Override
     public void runOpMode() throws InterruptedException
     {
+        Servo servo1 = new Servo();
+        servo1.initServo(hardwareMap);
         DriveTrain drive = new DriveTrain();
         drive.initDriveTrain(hardwareMap);
         Intake intake = new Intake();
@@ -77,22 +81,24 @@ public class MainTeleOp extends LinearOpMode
                 outtake.power(1);
             }
 
-            /*
-            if (gamepad2.x)
-            {
-                transfer.power(1);
-            }
-
-            if (gamepad2.b)
-            {
-                transfer.power(-1);
-            }
-
             if (gamepad2.a)
             {
-                transfer.power(0);
+                servo1.setServoPos(-1.0); // servo angle
             }
-             */
+
+            else
+            {
+                servo1.setServoPos(1.0); // servo angle
+            }
+             if (gamepad2.b)
+             {
+                 servo1.setServoRot(1.0); // servo power
+             }
+             else
+             {
+                 servo1.setServoRot(0); // servo power
+             }
+
         }
     }
 }
