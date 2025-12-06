@@ -11,7 +11,6 @@ import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
 import org.firstinspires.ftc.teamcode.Definitions.Intake;
 import org.firstinspires.ftc.teamcode.Definitions.Intake2;
 import org.firstinspires.ftc.teamcode.Definitions.Outtake;
-import org.firstinspires.ftc.teamcode.Definitions.Transfer;
 
 @TeleOp(name = "MainTeleOp")
 public class MainTeleOp extends LinearOpMode
@@ -19,8 +18,6 @@ public class MainTeleOp extends LinearOpMode
     @Override
     public void runOpMode() throws InterruptedException
     {
-        Transfer transfer = new Transfer();
-        transfer.initServo(hardwareMap);
         DriveTrain drive = new DriveTrain();
         drive.initDriveTrain(hardwareMap);
         Intake intake = new Intake();
