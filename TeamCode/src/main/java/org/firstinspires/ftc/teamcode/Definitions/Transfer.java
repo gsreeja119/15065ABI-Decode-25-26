@@ -1,23 +1,22 @@
 package org.firstinspires.ftc.teamcode.Definitions;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Transfer
-{
-    //private DcMotor transferMotor;
-    private DcMotor kickerServo;
+public class Transfer {
+    private Transfer transferPos;
+    private CRServo servoRot;
+        public void initServo(HardwareMap hardwareMap) {
+            transferPos = hardwareMap.get(Transfer.class, "Transfer_pos");
+            servoRot = hardwareMap.get(CRServo.class, "CRServo_rot");
+        }
+        public void setTransferPos (double angle)
+        {
+            transferPos.setTransferPos(angle);
+        }
 
-    public void initTransfer(HardwareMap transfer)
-    {
-        /*
-        transferMotor = transfer.get(DcMotor.class, "TransferMotor");
-        transferMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        transferMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-         */
-    }
-
-    public void power(double power) {
-        //transferMotor.setPower(power);
-    }
+        public void setServoRot (double power)
+        {
+            servoRot.setPower(power);
+        }
 }

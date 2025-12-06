@@ -1,22 +1,25 @@
 package org.firstinspires.ftc.teamcode.OpModes;
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
 import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
 import org.firstinspires.ftc.teamcode.Definitions.Intake;
 import org.firstinspires.ftc.teamcode.Definitions.Intake2;
 import org.firstinspires.ftc.teamcode.Definitions.Outtake;
-import org.firstinspires.ftc.teamcode.Definitions.Servo;
 import org.firstinspires.ftc.teamcode.Definitions.Transfer;
 
 @TeleOp(name = "MainTeleOp")
 public class MainTeleOp extends LinearOpMode
 {
-
     @Override
     public void runOpMode() throws InterruptedException
     {
-        Servo servo1 = new Servo();
-        servo1.initServo(hardwareMap);
+        Transfer transfer = new Transfer();
+        transfer.initServo(hardwareMap);
         DriveTrain drive = new DriveTrain();
         drive.initDriveTrain(hardwareMap);
         Intake intake = new Intake();
@@ -25,8 +28,6 @@ public class MainTeleOp extends LinearOpMode
         intake2.initIntake2(hardwareMap);
         Outtake outtake = new Outtake();
         outtake.initOuttake(hardwareMap);
-        Transfer transfer = new Transfer();
-        transfer.initTransfer(hardwareMap);
 
         double forward, strafe, rotate;
 
@@ -35,8 +36,7 @@ public class MainTeleOp extends LinearOpMode
 
         waitForStart();
 
-        if (isStopRequested())
-        {
+        if (isStopRequested()) {
             return;
         }
 
@@ -48,44 +48,53 @@ public class MainTeleOp extends LinearOpMode
 
             drive.mecanumEquations(forward, strafe, rotate);
 
-            if (gamepad1.right_bumper) {
+            while (gamepad1.left_bumper) {
                 intake.power(-1);
-                intake2.power(1);
-            }
-
-            if (gamepad1.y) {
-                intake.power(1);
                 intake2.power(-1);
             }
 
-            if (gamepad1.left_bumper) {
-                intake.power(0);
-                intake2.power(0);
+            while (gamepad1.right_bumper) {
+                intake.power(1);
+                intake2.power(1);
             }
 
-            if (gamepad2.right_bumper) {
+            while (gamepad2.right_bumper) {
                 outtake.power(-1);
             }
 
+            if (gamepad2.x) {
+                transfer.setTransferPos(-0.4);
+                transfer.setServoRot(1.0);
+            }
+
+            if (gamepad2.a) {
+                transfer.setTransferPos(0.4);
+                transfer.setServoRot(-1);
+            }
+
             if (gamepad2.left_bumper) {
-                outtake.power(0);
+                encoder(3);
             }
 
-            if (gamepad2.y) {
-                outtake.power(1);
-            }
-
-            if (gamepad2.a)
-            {
-                servo1.setServoPos(-0.4); // servo angle
-                servo1.setServoRot(1.0); // servo power
-            }
-
-            if (gamepad2.b)
-            {
-                servo1.setServoPos(0.4); // servo power
-                servo1.setServoRot(-1); // servo power
+            if (gamepad2.dpad_up) {
+                encoder(6);
             }
         }
+    }
+    double ticks = 537.7;
+    double newTarget;
+    private DcMotor Spindexer;
+
+    public void initSpindexer(@NonNull HardwareMap spindexer) {
+        Spindexer = spindexer.get(DcMotor.class, "SpindexerMotor");
+        Spindexer.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Spindexer.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+
+    public void encoder(int turnage) {
+        newTarget = ticks/turnage;
+        Spindexer.setTargetPosition((int)newTarget);
+        Spindexer.setPower(0.5);
+        Spindexer.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 }

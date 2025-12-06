@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.Definitions;
-import com.acmerobotics.dashboard.config.Config;
 import com.bylazar.configurables.annotations.Configurable;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @Configurable
 public class PIDConstants {
