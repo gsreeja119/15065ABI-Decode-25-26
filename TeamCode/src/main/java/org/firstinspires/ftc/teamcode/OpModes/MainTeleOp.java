@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
 import org.firstinspires.ftc.teamcode.Definitions.Intake;
@@ -62,14 +63,11 @@ public class MainTeleOp extends LinearOpMode
                 outtake.power(-1);
             }
 
-            if (gamepad2.x) {
-                transfer.setTransferPos(-0.4);
-                transfer.setServoRot(1.0);
+            if (gamepad2.xWasPressed()) {
+                Transfer.setPosition(0.4);
             }
-
-            if (gamepad2.a) {
-                transfer.setTransferPos(0.4);
-                transfer.setServoRot(-1);
+            else {
+                Transfer.setPosition(0);
             }
 
             if (gamepad2.left_bumper) {
@@ -84,9 +82,14 @@ public class MainTeleOp extends LinearOpMode
     double ticks = 537.7;
     double newTarget;
     private DcMotor Spindexer;
+    private Servo Transfer;
+
+    public void initServo(HardwareMap hardwareMap) {
+        Transfer = hardwareMap.get(Servo.class, "Transfer");
+    }
 
     public void initSpindexer(@NonNull HardwareMap spindexer) {
-        Spindexer = spindexer.get(DcMotor.class, "SpindexerMotor");
+        Spindexer = spindexer.get(DcMotor.class, "Spindexer");
         Spindexer.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Spindexer.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }

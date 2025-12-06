@@ -8,10 +8,10 @@ public class DriveTrain
     private DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
     public void initDriveTrain(HardwareMap hardwareMap)
     {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "BackLeftMotor");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
-        backRightMotor = hardwareMap.get(DcMotor.class, "BackRightMotor");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "FLMotor");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "BLMotor");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "FRMotor");
+        backRightMotor = hardwareMap.get(DcMotor.class, "BRMotor");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backRightMotor.setDirection(DcMotor.Direction.REVERSE);

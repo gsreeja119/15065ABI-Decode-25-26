@@ -8,7 +8,7 @@ public class Intake
 
     public void initIntake(HardwareMap intake)
     {
-        intakeMotor = intake.get(DcMotor.class, "IntakeMotor");
+        intakeMotor = intake.get(DcMotor.class, "Intake");
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }

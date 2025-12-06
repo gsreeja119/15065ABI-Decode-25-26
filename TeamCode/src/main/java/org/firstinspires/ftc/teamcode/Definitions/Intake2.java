@@ -6,7 +6,7 @@ public class Intake2 {
     private DcMotor intakeMotor2;
 
     public void initIntake2 (HardwareMap intake2) {
-        intakeMotor2 = intake2.get(DcMotor.class, "IntakeMotor2");
+        intakeMotor2 = intake2.get(DcMotor.class, "Intake2");
         intakeMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
