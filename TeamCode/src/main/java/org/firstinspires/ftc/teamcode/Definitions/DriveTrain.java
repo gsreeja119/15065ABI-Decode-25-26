@@ -56,7 +56,7 @@ public class DriveTrain
         backRightMotor.setPower(output);
     }
 
-    void setSafePower(DcMotor motor, double targetPower){
+    public void setSafePower(DcMotor motor, double targetPower){
         final double SLEW_RATE = 0.2;
         double currentPower = motor.getPower();
         double desiredChange = targetPower - currentPower;

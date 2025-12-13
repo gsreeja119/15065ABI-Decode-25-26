@@ -11,7 +11,15 @@ public class Intake2 {
         intakeMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
-    public void power(double power) {
-        intakeMotor2.setPower(power);
+    public void setSafePower(DcMotor motor, double targetPower){
+        final double SLEW_RATE = 0.2;
+        double currentPower = motor.getPower();
+        double desiredChange = targetPower - currentPower;
+        double limitedChange = Math.max(-SLEW_RATE, Math.min(desiredChange, SLEW_RATE));
+        motor.setPower(currentPower += limitedChange);
     }
+
+    /* public void power(double power) {
+        intakeMotor2.setPower(power);
+    } */
 }

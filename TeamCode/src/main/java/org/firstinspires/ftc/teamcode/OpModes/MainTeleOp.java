@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.Definitions.DriveTrain;
 import org.firstinspires.ftc.teamcode.Definitions.Intake;
 import org.firstinspires.ftc.teamcode.Definitions.Intake2;
 import org.firstinspires.ftc.teamcode.Definitions.Outtake;
+import org.firstinspires.ftc.teamcode.Definitions.Spindexer;
 
 @TeleOp(name = "MainTeleOp")
 public class MainTeleOp extends LinearOpMode
@@ -24,6 +25,8 @@ public class MainTeleOp extends LinearOpMode
         intake2.initIntake2(hardwareMap);
         Outtake outtake = new Outtake();
         outtake.initOuttake(hardwareMap);
+        Spindexer spindexer = new Spindexer();
+        spindexer.initSpindexer(hardwareMap);
 
         double forward, strafe, rotate;
 
@@ -44,6 +47,19 @@ public class MainTeleOp extends LinearOpMode
 
         Spindexer = hardwareMap.get(DcMotor.class, "Spindexer");
         Spindexer.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Spindexer.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        intakeMotor = hardwareMap.get(DcMotor.class, "Intake");
+        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
+        intakeMotor2 = hardwareMap.get(DcMotor.class, "Intake2");
+        intakeMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        intakeMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
+        outtakeMotor = hardwareMap.get(DcMotor.class, "Outtake");
+        outtakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        outtakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         telemetry.addData("Status", "Ready");
         telemetry.update();
@@ -70,17 +86,17 @@ public class MainTeleOp extends LinearOpMode
             lastRightBumper1 = gamepad1.right_bumper;
 
             if (intakeOn) {
-                intake.power(-0.7);
+                intake.setSafePower(intakeMotor, -0.9);
             }
             else {
-                intake.power(0);
+                intake.setSafePower(intakeMotor, 0);
             }
 
             if (intake2On) {
-                intake2.power(0.7);
+                intake2.setSafePower(intakeMotor2, 0.9);
             }
             else {
-                intake2.power(0);
+                intake2.setSafePower(intakeMotor2, 0);
             }
 
             if (gamepad1.left_bumper && !lastLeftBumper1) {
@@ -91,17 +107,17 @@ public class MainTeleOp extends LinearOpMode
             lastLeftBumper1 = gamepad1.left_bumper;
 
             if (inouttakeOn) {
-                intake.power(0.7);
+                intake.setSafePower(intakeMotor, 0.9);
             }
             else {
-                intake.power(0);
+                intake.setSafePower(intakeMotor, 0);
             }
 
             if (inouttake2On) {
-                intake2.power(-0.7);
+                intake2.setSafePower(intakeMotor2, -0.9);
             }
             else {
-                intake2.power(0);
+                intake2.setSafePower(intakeMotor2, 0);
             }
 
             if (gamepad2.right_bumper && !lastRightBumper2) {
@@ -111,10 +127,10 @@ public class MainTeleOp extends LinearOpMode
             lastRightBumper2 = gamepad2.right_bumper;
 
             if (outtakeOn) {
-                outtake.power(-1);
+                outtake.setOuttake(1200);
             }
             else {
-                outtake.power(0);
+                outtake.setOuttake(0);
             }
 
             if (gamepad2.left_bumper && !lastLeftBumper2) {
@@ -124,10 +140,10 @@ public class MainTeleOp extends LinearOpMode
             lastLeftBumper2 = gamepad2.left_bumper;
 
             if (outouttakeOn) {
-                outtake.power(1);
+                outtake.setSafePower(outtakeMotor, 1);
             }
             else {
-                outtake.power(0);
+                outtake.setSafePower(outtakeMotor, 0);
             }
 
             if (gamepad2.dpad_up && !lastUp) {
@@ -144,22 +160,25 @@ public class MainTeleOp extends LinearOpMode
             }
 
             if (gamepad2.right_trigger > 0.5) {
-                Spindexer.setPower(0.1);
+                spindexer.setSafePower(Spindexer, 0.1);
             }
             else {
-                Spindexer.setPower(0);
+                spindexer.setSafePower(Spindexer, 0);
             }
 
             if (gamepad2.left_trigger > 0.5) {
-                Spindexer.setPower(-0.1);
+                spindexer.setSafePower(Spindexer, -0.1);
             }
             else {
-                Spindexer.setPower(0);
+                spindexer.setSafePower(Spindexer, 0);
             }
         }
     }
     private DcMotor Spindexer;
     private Servo transfer;
+    private DcMotor intakeMotor;
+    private DcMotor intakeMotor2;
+    private DcMotor outtakeMotor;
 }
 
 // cool comment 2
