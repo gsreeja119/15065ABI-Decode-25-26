@@ -14,7 +14,7 @@ public class DriveTrain
         backRightMotor = hardwareMap.get(DcMotor.class, "BRMotor");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -51,8 +51,16 @@ public class DriveTrain
     public void power(double output)
     {
         frontLeftMotor.setPower(-output);
-        backLeftMotor.setPower(output);
+        backLeftMotor.setPower(-output);
         frontRightMotor.setPower(output);
-        backRightMotor.setPower(-output);
+        backRightMotor.setPower(output);
+    }
+
+    void setSafePower(DcMotor motor, double targetPower){
+        final double SLEW_RATE = 0.2;
+        double currentPower = motor.getPower();
+        double desiredChange = targetPower - currentPower;
+        double limitedChange = Math.max(-SLEW_RATE, Math.min(desiredChange, SLEW_RATE));
+        motor.setPower(currentPower += limitedChange);
     }
 }

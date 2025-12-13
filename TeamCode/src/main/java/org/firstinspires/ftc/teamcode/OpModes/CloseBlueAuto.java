@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous (name = "BlueAllianceAuto")
+@Autonomous (name = "CloseBlueAuto")
 public class CloseBlueAuto extends LinearOpMode {
     private DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
 
