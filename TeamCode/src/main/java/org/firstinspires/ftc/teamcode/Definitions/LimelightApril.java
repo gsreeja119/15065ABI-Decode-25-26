@@ -14,16 +14,17 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 public class LimelightApril extends LinearOpMode
 {
 
-    private Limelight3A limelight;
+    public Limelight3A limelight;
 
-    private IMU imu;
+    public IMU imu;
 
     public void runOpMode() throws InterruptedException
     {
         limelight = hardwareMap.get(Limelight3A.class, "Limelight");
         limelight.pipelineSwitch(8);
         imu = hardwareMap.get(IMU.class, "IMU");
-        RevHubOrientationOnRobot revHubOrientationOnRobot = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP,
+        RevHubOrientationOnRobot revHubOrientationOnRobot = new RevHubOrientationOnRobot
+                (RevHubOrientationOnRobot.LogoFacingDirection.UP,
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD);
         imu.initialize(new IMU.Parameters(revHubOrientationOnRobot));
 
@@ -33,9 +34,9 @@ public class LimelightApril extends LinearOpMode
         {
             return;
         }
+
         {
             limelight.start();
-
 
             while (opModeIsActive())
             {

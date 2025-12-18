@@ -1,28 +1,18 @@
 package org.firstinspires.ftc.teamcode.Definitions;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Intake
 {
-    private DcMotor intakeMotor;
+    public DcMotorEx intakeMotor;
 
     public void initIntake(HardwareMap intake)
     {
-        intakeMotor = intake.get(DcMotor.class, "Intake");
-        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intakeMotor = intake.get(DcMotorEx.class, "Intake");
+        intakeMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        intakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
     }
-
-    public void setSafePower(DcMotor motor, double targetPower){
-        final double SLEW_RATE = 0.2;
-        double currentPower = motor.getPower();
-        double desiredChange = targetPower - currentPower;
-        double limitedChange = Math.max(-SLEW_RATE, Math.min(desiredChange, SLEW_RATE));
-        motor.setPower(currentPower += limitedChange);
+    public void setIntake2(double velocity) {
+        intakeMotor.setVelocity(velocity);
     }
-
-    /* public void power(double power)
-    {
-        intakeMotor.setPower(power);
-    } */
 }

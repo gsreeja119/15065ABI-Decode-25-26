@@ -20,7 +20,7 @@ public class StaticHeading extends LinearOpMode {
     DriveTrain drivetrain = new DriveTrain();
     ElapsedTime timer = new ElapsedTime();
     private double lastError = 0;
-    private BNO055IMU imu;
+    public BNO055IMU imu;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -38,8 +38,10 @@ public class StaticHeading extends LinearOpMode {
 
         while(opModeIsActive()){
             telemetry.addData("Target IMU Angle", referenceAngle);
-            telemetry.addData("Current IMU Angle", imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle);
-            double power = PIDControl(referenceAngle, imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS).firstAngle);
+            telemetry.addData("Current IMU Angle", imu.getAngularOrientation
+                    (AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle);
+            double power = PIDControl(referenceAngle, imu.getAngularOrientation
+                    (AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS).firstAngle);
             drivetrain.power(power);
             telemetry.update();
         }
