@@ -1,5 +1,4 @@
 package org.firstinspires.ftc.teamcode.pedroPathing;
-
 import com.pedropathing.follower.Follower;
 import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
@@ -25,14 +24,14 @@ public class Constants
 
     public static MecanumConstants driveConstants = new MecanumConstants()
             .maxPower(1)
-            .rightFrontMotorName("FrontRightMotor")
-            .rightRearMotorName("BackRightMotor")
-            .leftRearMotorName("BackLeftMotor")
-            .leftFrontMotorName("FrontLeftMotor")
+            .rightFrontMotorName("FRMotor")
+            .rightRearMotorName("BRMotor")
+            .leftRearMotorName("BLMotor")
+            .leftFrontMotorName("FLMotor")
             .leftFrontMotorDirection(DcMotor.Direction.REVERSE)
-            .leftRearMotorDirection(DcMotor.Direction.FORWARD)
+            .leftRearMotorDirection(DcMotor.Direction.REVERSE)
             .rightFrontMotorDirection(DcMotor.Direction.FORWARD)
-            .rightRearMotorDirection(DcMotor.Direction.REVERSE)
+            .rightRearMotorDirection(DcMotor.Direction.FORWARD)
             .xVelocity(2) //fix later(Automatic Tuners)
             .yVelocity(2); //fix later(Automatic Tuners)
 
@@ -43,9 +42,9 @@ public class Constants
             .leftPodY(1) //fix later(Three Wheel)
             .rightPodY(-1) //fix later(Three Wheel)
             .strafePodX(-2.5) //fix later(Three Wheel)
-            .leftEncoder_HardwareMapName("FrontLeftMotor") //fix later(Three Wheel)
-            .rightEncoder_HardwareMapName("BackRightMotor") //fix later(Three Wheel)
-            .strafeEncoder_HardwareMapName("FrontRightMotor") //fix later(Three Wheel)
+            .leftEncoder_HardwareMapName("FLMotor") //fix later(Three Wheel)
+            .rightEncoder_HardwareMapName("BRMotor") //fix later(Three Wheel)
+            .strafeEncoder_HardwareMapName("FRMotor") //fix later(Three Wheel)
             .leftEncoderDirection(Encoder.FORWARD) //fix later(Three Wheel)
             .rightEncoderDirection(Encoder.FORWARD) //fix later(Three Wheel)
             .strafeEncoderDirection(Encoder.FORWARD) //fix later(Three Wheel)
@@ -54,7 +53,6 @@ public class Constants
             .forwardTicksToInches(2) //fix later(Three Wheel)
             .strafeTicksToInches(2) //fix later(Three Wheel)
             .turnTicksToInches(2); //fix later(Three Wheel)
-
 
     public static Follower createFollower(HardwareMap hardwareMap)
     {

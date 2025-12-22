@@ -1,5 +1,4 @@
 package org.firstinspires.ftc.teamcode.Definitions;
-
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -8,7 +7,10 @@ public class Indexer {
 
     public void initIndexer(HardwareMap Indexer) {
         indexer = Indexer.get(DcMotorEx.class, "Indexer");
-        indexer.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        indexer.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         indexer.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+    }
+    public void setIndexer(double velocity) {
+        indexer.setVelocity(velocity);
     }
 }

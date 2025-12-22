@@ -1,13 +1,10 @@
 package org.firstinspires.ftc.teamcode.Definitions;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class DriveTrain
-{
+public class DriveTrain {
     private DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
-    public void initDriveTrain(HardwareMap hardwareMap)
-    {
+    public void initDriveTrain(HardwareMap hardwareMap) {
         frontLeftMotor = hardwareMap.get(DcMotor.class, "FLMotor");
         backLeftMotor = hardwareMap.get(DcMotor.class, "BLMotor");
         frontRightMotor = hardwareMap.get(DcMotor.class, "FRMotor");
@@ -27,8 +24,7 @@ public class DriveTrain
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void mecanumEquations(double forward, double strafe, double rotate)
-    {
+    public void mecanumEquations(double forward, double strafe, double rotate) {
         double frontLeftPower = forward + strafe + rotate;
         double backLeftPower = forward - strafe + rotate;
         double frontRightPower = forward - strafe - rotate;
@@ -48,8 +44,7 @@ public class DriveTrain
         backRightMotor.setPower(maxSpeed * (backRightPower / maxPower));
     }
 
-    public void power(double output)
-    {
+    public void power(double output) {
         frontLeftMotor.setPower(-output);
         backLeftMotor.setPower(-output);
         frontRightMotor.setPower(output);
